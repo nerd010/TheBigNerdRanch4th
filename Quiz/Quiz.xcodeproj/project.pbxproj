@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		793ED1201DE1E844009ECB8D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 793ED11F1DE1E844009ECB8D /* main.m */; };
 		793ED1231DE1E844009ECB8D /* BNRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 793ED1221DE1E844009ECB8D /* BNRAppDelegate.m */; };
-		793ED1261DE1E844009ECB8D /* BNRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 793ED1251DE1E844009ECB8D /* BNRViewController.m */; };
 		793ED1291DE1E844009ECB8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 793ED1271DE1E844009ECB8D /* Main.storyboard */; };
 		793ED12B1DE1E844009ECB8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 793ED12A1DE1E844009ECB8D /* Assets.xcassets */; };
 		793ED12E1DE1E844009ECB8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 793ED12C1DE1E844009ECB8D /* LaunchScreen.storyboard */; };
+		793ED1381DE1EBAC009ECB8D /* BNRQuizViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 793ED1361DE1EBAC009ECB8D /* BNRQuizViewController.m */; };
+		793ED1391DE1EBAC009ECB8D /* BNRQuizViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 793ED1371DE1EBAC009ECB8D /* BNRQuizViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +21,13 @@
 		793ED11F1DE1E844009ECB8D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		793ED1211DE1E844009ECB8D /* BNRAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNRAppDelegate.h; sourceTree = "<group>"; };
 		793ED1221DE1E844009ECB8D /* BNRAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNRAppDelegate.m; sourceTree = "<group>"; };
-		793ED1241DE1E844009ECB8D /* BNRViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNRViewController.h; sourceTree = "<group>"; };
-		793ED1251DE1E844009ECB8D /* BNRViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNRViewController.m; sourceTree = "<group>"; };
 		793ED1281DE1E844009ECB8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		793ED12A1DE1E844009ECB8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		793ED12D1DE1E844009ECB8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		793ED12F1DE1E844009ECB8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		793ED1351DE1EBAC009ECB8D /* BNRQuizViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRQuizViewController.h; sourceTree = "<group>"; };
+		793ED1361DE1EBAC009ECB8D /* BNRQuizViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRQuizViewController.m; sourceTree = "<group>"; };
+		793ED1371DE1EBAC009ECB8D /* BNRQuizViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRQuizViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +62,9 @@
 			children = (
 				793ED1211DE1E844009ECB8D /* BNRAppDelegate.h */,
 				793ED1221DE1E844009ECB8D /* BNRAppDelegate.m */,
-				793ED1241DE1E844009ECB8D /* BNRViewController.h */,
-				793ED1251DE1E844009ECB8D /* BNRViewController.m */,
+				793ED1351DE1EBAC009ECB8D /* BNRQuizViewController.h */,
+				793ED1361DE1EBAC009ECB8D /* BNRQuizViewController.m */,
+				793ED1371DE1EBAC009ECB8D /* BNRQuizViewController.xib */,
 				793ED1271DE1E844009ECB8D /* Main.storyboard */,
 				793ED12A1DE1E844009ECB8D /* Assets.xcassets */,
 				793ED12C1DE1E844009ECB8D /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				793ED1391DE1EBAC009ECB8D /* BNRQuizViewController.xib in Resources */,
 				793ED12E1DE1E844009ECB8D /* LaunchScreen.storyboard in Resources */,
 				793ED12B1DE1E844009ECB8D /* Assets.xcassets in Resources */,
 				793ED1291DE1E844009ECB8D /* Main.storyboard in Resources */,
@@ -151,9 +155,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				793ED1261DE1E844009ECB8D /* BNRViewController.m in Sources */,
 				793ED1231DE1E844009ECB8D /* BNRAppDelegate.m in Sources */,
 				793ED1201DE1E844009ECB8D /* main.m in Sources */,
+				793ED1381DE1EBAC009ECB8D /* BNRQuizViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
