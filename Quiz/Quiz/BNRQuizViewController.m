@@ -10,6 +10,9 @@
 
 @interface BNRQuizViewController ()
 
+@property (nonatomic, weak) IBOutlet UILabel *questionLabel;
+@property (nonatomic, weak) IBOutlet UILabel *answerLabel;
+
 @end
 
 @implementation BNRQuizViewController
@@ -22,6 +25,16 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)showQuestion:(id)sender
+{
+
+}
+
+- (IBAction)showAnswer:(id)sender
+{
+
 }
 
 /*
