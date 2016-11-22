@@ -15,11 +15,8 @@
 //    self = [super init];
     if (self)
     {
-        _itemName = name;
-        _valueInDollars = value;
-        _serialNumber = sNumber;
-        _dateCreated = [[NSDate alloc] init];
-        _subitems = [[NSMutableArray alloc] init];
+//        _dateCreated = [[NSDate alloc] init];
+//        _subitems = [[NSMutableArray alloc] init];
     }
     return self;
 }

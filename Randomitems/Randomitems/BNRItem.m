@@ -63,6 +63,30 @@
     return [self initWithItemName:@"Item"];
 }
 
+- (void)setContainedItem:(BNRItem *)item
+{
+    _containedItem = item;
+    //将item加入容纳它的BNRItem对象时，
+    //会将它的 container 实例变量指向容纳它的对象。
+    item.container = self;
+}
+
+#if (0)
+- (BNRItem *)containedItem
+{
+    return _containedItem;
+}
+
+- (void)setContainer:(BNRItem *)item
+{
+    _container = item;
+}
+
+- (BNRItem *)container
+{
+    return _container;
+}
+
 - (void)setItemName:(NSString *)str
 {
     _itemName = str;
@@ -97,6 +121,7 @@
 {
     return _dateCreated;
 }
+#endif
 
 - (NSString *)description
 {
@@ -107,6 +132,11 @@
                                    self.dateCreated];
     
     return descriptionString;
+}
+
+- (void)dealloc
+{
+    NSLog(@"Destroyed:%@", self);
 }
 
 @end
