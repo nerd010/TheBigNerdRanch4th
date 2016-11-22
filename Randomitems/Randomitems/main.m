@@ -8,33 +8,46 @@
 
 #import <Foundation/Foundation.h>
 #import "BNRItem.h"
+#import "BNRContainer.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         NSMutableArray *items = [[NSMutableArray alloc] init];
-        [items addObject:@"One"];
-        [items addObject:@"Two"];
-        [items addObject:@"Three"];
-        [items insertObject:@"Zero" atIndex:0];
+//        [items addObject:@"One"];
+//        [items addObject:@"Two"];
+//        [items addObject:@"Three"];
+//        [items insertObject:@"Zero" atIndex:0];
+//        
+//        for (NSString *item in items)
+//        {
+//            NSLog(@"%@", item);
+//        }
         
-        for (NSString *item in items)
-        {
-            NSLog(@"%@", item);
-        }
-        
-        BNRItem *item = [[BNRItem alloc] init];
+//        BNRItem *item = [[BNRItem alloc] init];
 //        [item setItemName:@"Red Sofa"];
 //        [item setSerialNumber:@"A1B2C"];
 //        [item setValueInDollars:100];
-        item.itemName = @"Red Sofa";
-        item.serialNumber = @"A1B2C";
-        item.valueInDollars = 100;
+//        item.itemName = @"Red Sofa";
+//        item.serialNumber = @"A1B2C";
+//        item.valueInDollars = 100;
         
 //        NSLog(@"%@ %@ %@ %d", [item itemName], [item dateCreated], [item serialNumber], [item valueInDollars]);
         //程序会先调用相应实参的description方法，
         //然后用返回的字符串替换%@
-        NSLog(@"%@", item);
+//        NSLog(@"%@", item);
+
+        for (int i = 0; i < 10; i++)
+        {
+            BNRItem *item = [BNRItem randomItem];
+            [items addObject:item];
+        }
+        for (int i = 0; i < items.count; i++)
+        {
+            NSLog(@"item[%d]:%@", i, items[i]);
+        }
         
+//        BNRContainer *container = [BNRContainer randomItem];
+//        [container.subitems addObject:container];
         items = nil;
     }
     return 0;

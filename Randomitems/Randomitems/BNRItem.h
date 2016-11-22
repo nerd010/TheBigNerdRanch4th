@@ -16,8 +16,13 @@
     NSDate *_dateCreated;
 }
 
++ (instancetype)randomItem;
+
+// BNRItem 类的指定初始化方法
 - (instancetype)initWithItemName:(NSString *)name
-                  valueInDollars:(NSString *)value
+                  valueInDollars:(int)value
+                    serialNumber:(NSString *)sNumber;
+- (instancetype)initWithItemName:(NSString *)name
                     serialNumber:(NSString *)sNumber;
 
 - (instancetype)initWithItemName:(NSString *)name;
