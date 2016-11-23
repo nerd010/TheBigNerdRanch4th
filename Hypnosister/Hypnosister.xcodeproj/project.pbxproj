@@ -13,6 +13,8 @@
 		791D152E1DE49A510000ADD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 791D152C1DE49A510000ADD0 /* Main.storyboard */; };
 		791D15301DE49A510000ADD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 791D152F1DE49A510000ADD0 /* Assets.xcassets */; };
 		791D15331DE49A510000ADD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 791D15311DE49A510000ADD0 /* LaunchScreen.storyboard */; };
+		791D153C1DE54A6D0000ADD0 /* BNRHypnosisView.m in Sources */ = {isa = PBXBuildFile; fileRef = 791D153B1DE54A6D0000ADD0 /* BNRHypnosisView.m */; };
+		791D153E1DE5FC830000ADD0 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 791D153D1DE5FC830000ADD0 /* logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,9 @@
 		791D152F1DE49A510000ADD0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		791D15321DE49A510000ADD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		791D15341DE49A510000ADD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		791D153A1DE54A6D0000ADD0 /* BNRHypnosisView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRHypnosisView.h; sourceTree = "<group>"; };
+		791D153B1DE54A6D0000ADD0 /* BNRHypnosisView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRHypnosisView.m; sourceTree = "<group>"; };
+		791D153D1DE5FC830000ADD0 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Images/logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,10 +67,12 @@
 				791D15271DE49A510000ADD0 /* AppDelegate.m */,
 				791D15291DE49A510000ADD0 /* ViewController.h */,
 				791D152A1DE49A510000ADD0 /* ViewController.m */,
+				791D153A1DE54A6D0000ADD0 /* BNRHypnosisView.h */,
+				791D153B1DE54A6D0000ADD0 /* BNRHypnosisView.m */,
+				791D153D1DE5FC830000ADD0 /* logo.png */,
 				791D152C1DE49A510000ADD0 /* Main.storyboard */,
 				791D152F1DE49A510000ADD0 /* Assets.xcassets */,
 				791D15311DE49A510000ADD0 /* LaunchScreen.storyboard */,
-				791D15341DE49A510000ADD0 /* Info.plist */,
 				791D15231DE49A510000ADD0 /* Supporting Files */,
 			);
 			path = Hypnosister;
@@ -74,6 +81,7 @@
 		791D15231DE49A510000ADD0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				791D15341DE49A510000ADD0 /* Info.plist */,
 				791D15241DE49A510000ADD0 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -138,6 +146,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				791D153E1DE5FC830000ADD0 /* logo.png in Resources */,
 				791D15331DE49A510000ADD0 /* LaunchScreen.storyboard in Resources */,
 				791D15301DE49A510000ADD0 /* Assets.xcassets in Resources */,
 				791D152E1DE49A510000ADD0 /* Main.storyboard in Resources */,
@@ -153,6 +162,7 @@
 			files = (
 				791D152B1DE49A510000ADD0 /* ViewController.m in Sources */,
 				791D15281DE49A510000ADD0 /* AppDelegate.m in Sources */,
+				791D153C1DE54A6D0000ADD0 /* BNRHypnosisView.m in Sources */,
 				791D15251DE49A510000ADD0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,6 +320,7 @@
 				791D15391DE49A510000ADD0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
