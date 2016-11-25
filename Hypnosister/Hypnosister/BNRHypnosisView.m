@@ -42,7 +42,6 @@
         [path addArcWithCenter:center radius:currentRadius startAngle:0.0 endAngle:M_PI * 2.0 clockwise:YES];
     }
     path.lineWidth = 10.0;
-//    [[UIColor lightGrayColor] setStroke];
     [self.circleColor setStroke];
     [path stroke];
     
