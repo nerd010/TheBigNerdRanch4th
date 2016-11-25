@@ -50,6 +50,12 @@
     [logoImage drawInRect:logoFrame];
 }
 
+- (void)setCircleColor:(UIColor *)circleColor
+{
+    _circleColor = circleColor;
+    [self setNeedsDisplay];
+}
+
 //BNRHypnosisView 被触摸时会收到消息
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {

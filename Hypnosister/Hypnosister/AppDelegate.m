@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import "BNRHypnosisView.h"
 
 @interface AppDelegate ()
 
@@ -20,11 +19,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 //    CGRect firstFrame = CGRectMake(160, 240, 100, 150);
-    CGRect firstFrame = self.window.frame;
+//    CGRect firstFrame = self.window.frame;
     
-    BNRHypnosisView *firstView = [[BNRHypnosisView alloc] initWithFrame:firstFrame];
+//    BNRHypnosisView *firstView = [[BNRHypnosisView alloc] initWithFrame:firstFrame];
 //    firstView.backgroundColor = [UIColor redColor];
-    [self.window addSubview:firstView];
+//    [self.window addSubview:firstView];
     
 //    CGRect secondFrame = CGRectMake(20, 30, 50, 50);
 //    BNRHypnosisView *secondView = [[BNRHypnosisView alloc] initWithFrame:secondFrame];

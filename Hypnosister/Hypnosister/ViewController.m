@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "BNRHypnosisView.h"
 
 @interface ViewController ()
 
@@ -16,6 +17,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    CGRect firstFrame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+    BNRHypnosisView *firstView = [[BNRHypnosisView alloc] initWithFrame:firstFrame];
+    [self.view addSubview:firstView];
 }
 
 
