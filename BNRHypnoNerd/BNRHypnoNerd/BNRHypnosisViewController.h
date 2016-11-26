@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  BNRHypnosisViewController.h
 //  BNRHypnoNerd
 //
 //  Created by Richard Wang on 2016/11/26.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface BNRHypnosisViewController : UIViewController
 
 @end
-
