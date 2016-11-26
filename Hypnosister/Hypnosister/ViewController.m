@@ -9,6 +9,9 @@
 #import "ViewController.h"
 #import "BNRHypnosisView.h"
 
+#define WIDTH [UIScreen mainScreen].bounds.size.width
+#define HEIGHT [UIScreen mainScreen].bounds.size.height
+
 @interface ViewController ()
 
 @end
@@ -18,9 +21,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    CGRect firstFrame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-    BNRHypnosisView *firstView = [[BNRHypnosisView alloc] initWithFrame:firstFrame];
-    [self.view addSubview:firstView];
+    CGRect screenRect = CGRectMake(0, 0, WIDTH, HEIGHT);
+    CGRect bigRect = screenRect;
+    bigRect.size.width *= 2;
+//    bigRect.size.height *= 2;
+    
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:screenRect];
+    scrollView.contentSize = bigRect.size;
+    scrollView.pagingEnabled = YES;
+//    BNRHypnosisView *firstView = [[BNRHypnosisView alloc] initWithFrame:bigRect];
+//    [scrollView addSubview:firstView];
+    BNRHypnosisView *hypnosisView = [[BNRHypnosisView alloc] initWithFrame:screenRect];
+    [scrollView addSubview:hypnosisView];
+    
+    screenRect.origin.x += screenRect.size.width;
+    BNRHypnosisView *anoterView = [[BNRHypnosisView alloc] initWithFrame:screenRect];
+    [scrollView addSubview:anoterView];
+    [self.view addSubview: scrollView];
 }
 
 
