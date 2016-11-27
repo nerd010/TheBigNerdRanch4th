@@ -16,6 +16,10 @@
 		794B89A81DE9940700D0285E /* BNRHypnosisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 794B89A71DE9940700D0285E /* BNRHypnosisViewController.m */; };
 		794B89AB1DE9D9FE00D0285E /* BNRReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 794B89AA1DE9D9FE00D0285E /* BNRReminderViewController.m */; };
 		794B89AD1DE9E56600D0285E /* BNRReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 794B89AC1DE9E56600D0285E /* BNRReminderViewController.xib */; };
+		794B89B31DEA726B00D0285E /* Hypno.png in Resources */ = {isa = PBXBuildFile; fileRef = 794B89AF1DEA726B00D0285E /* Hypno.png */; };
+		794B89B41DEA726B00D0285E /* Hypno@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 794B89B01DEA726B00D0285E /* Hypno@2x.png */; };
+		794B89B51DEA726B00D0285E /* Time.png in Resources */ = {isa = PBXBuildFile; fileRef = 794B89B11DEA726B00D0285E /* Time.png */; };
+		794B89B61DEA726B00D0285E /* Time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 794B89B21DEA726B00D0285E /* Time@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		794B89A91DE9D9FE00D0285E /* BNRReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRReminderViewController.h; sourceTree = "<group>"; };
 		794B89AA1DE9D9FE00D0285E /* BNRReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRReminderViewController.m; sourceTree = "<group>"; };
 		794B89AC1DE9E56600D0285E /* BNRReminderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRReminderViewController.xib; sourceTree = "<group>"; };
+		794B89AF1DEA726B00D0285E /* Hypno.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Hypno.png; path = sourceImages/Hypno.png; sourceTree = "<group>"; };
+		794B89B01DEA726B00D0285E /* Hypno@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Hypno@2x.png"; path = "sourceImages/Hypno@2x.png"; sourceTree = "<group>"; };
+		794B89B11DEA726B00D0285E /* Time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Time.png; path = sourceImages/Time.png; sourceTree = "<group>"; };
+		794B89B21DEA726B00D0285E /* Time@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Time@2x.png"; path = "sourceImages/Time@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +83,7 @@
 				794B89AC1DE9E56600D0285E /* BNRReminderViewController.xib */,
 				794B89A31DE9931100D0285E /* BNRHypnosisView.h */,
 				794B89A41DE9931100D0285E /* BNRHypnosisView.m */,
+				794B89AE1DEA723600D0285E /* SourceImages */,
 				794B89951DE991A000D0285E /* Main.storyboard */,
 				794B89981DE991A000D0285E /* Assets.xcassets */,
 				794B899A1DE991A000D0285E /* LaunchScreen.storyboard */,
@@ -90,6 +99,17 @@
 				794B898D1DE991A000D0285E /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		794B89AE1DEA723600D0285E /* SourceImages */ = {
+			isa = PBXGroup;
+			children = (
+				794B89AF1DEA726B00D0285E /* Hypno.png */,
+				794B89B01DEA726B00D0285E /* Hypno@2x.png */,
+				794B89B11DEA726B00D0285E /* Time.png */,
+				794B89B21DEA726B00D0285E /* Time@2x.png */,
+			);
+			name = SourceImages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,8 +173,12 @@
 			files = (
 				794B899C1DE991A000D0285E /* LaunchScreen.storyboard in Resources */,
 				794B89AD1DE9E56600D0285E /* BNRReminderViewController.xib in Resources */,
+				794B89B51DEA726B00D0285E /* Time.png in Resources */,
 				794B89991DE991A000D0285E /* Assets.xcassets in Resources */,
+				794B89B41DEA726B00D0285E /* Hypno@2x.png in Resources */,
 				794B89971DE991A000D0285E /* Main.storyboard in Resources */,
+				794B89B31DEA726B00D0285E /* Hypno.png in Resources */,
+				794B89B61DEA726B00D0285E /* Time@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
