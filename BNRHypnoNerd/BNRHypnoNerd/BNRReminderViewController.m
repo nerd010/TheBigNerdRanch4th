@@ -21,10 +21,12 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self)
     {
-        self.tabBarItem.title = @"Hypnotize";
-        UIImage *i = [UIImage imageNamed:@""];
+        self.tabBarItem.title = @"Reminder";
+        self.tabBarItem.image = [UIImage imageNamed:@"Time.png"];
     }
+    return  self;
 }
+
 
 - (IBAction)addReminder:(id)sender
 {
