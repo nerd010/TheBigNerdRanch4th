@@ -15,6 +15,7 @@
 		794B89A51DE9931100D0285E /* BNRHypnosisView.m in Sources */ = {isa = PBXBuildFile; fileRef = 794B89A41DE9931100D0285E /* BNRHypnosisView.m */; };
 		794B89A81DE9940700D0285E /* BNRHypnosisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 794B89A71DE9940700D0285E /* BNRHypnosisViewController.m */; };
 		794B89AB1DE9D9FE00D0285E /* BNRReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 794B89AA1DE9D9FE00D0285E /* BNRReminderViewController.m */; };
+		794B89AD1DE9E56600D0285E /* BNRReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 794B89AC1DE9E56600D0285E /* BNRReminderViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		794B89A71DE9940700D0285E /* BNRHypnosisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRHypnosisViewController.m; sourceTree = "<group>"; };
 		794B89A91DE9D9FE00D0285E /* BNRReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRReminderViewController.h; sourceTree = "<group>"; };
 		794B89AA1DE9D9FE00D0285E /* BNRReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRReminderViewController.m; sourceTree = "<group>"; };
+		794B89AC1DE9E56600D0285E /* BNRReminderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRReminderViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				794B89A71DE9940700D0285E /* BNRHypnosisViewController.m */,
 				794B89A91DE9D9FE00D0285E /* BNRReminderViewController.h */,
 				794B89AA1DE9D9FE00D0285E /* BNRReminderViewController.m */,
+				794B89AC1DE9E56600D0285E /* BNRReminderViewController.xib */,
 				794B89A31DE9931100D0285E /* BNRHypnosisView.h */,
 				794B89A41DE9931100D0285E /* BNRHypnosisView.m */,
 				794B89951DE991A000D0285E /* Main.storyboard */,
@@ -149,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				794B899C1DE991A000D0285E /* LaunchScreen.storyboard in Resources */,
+				794B89AD1DE9E56600D0285E /* BNRReminderViewController.xib in Resources */,
 				794B89991DE991A000D0285E /* Assets.xcassets in Resources */,
 				794B89971DE991A000D0285E /* Main.storyboard in Resources */,
 			);

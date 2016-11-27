@@ -16,10 +16,13 @@
 
 @implementation BNRReminderViewController
 
-- (void)addReminder:(id)sender
+- (IBAction)addReminder:(id)sender
 {
+    NSDateFormatter *datef = [[NSDateFormatter alloc] init];
+    [datef setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *date = self.datePicker.date;
-    NSLog(@"Setting a reminder for %@", date);
+    NSString *dateStr = [datef stringFromDate:date];
+    NSLog(@"Setting a reminder for %@", dateStr);
 }
 
 @end
