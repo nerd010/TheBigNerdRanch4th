@@ -28,6 +28,17 @@
     return  self;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.datePicker.minimumDate = [NSDate dateWithTimeIntervalSinceNow:60];
+}
 
 - (IBAction)addReminder:(id)sender
 {
@@ -45,7 +56,7 @@
     [self registerNotification:30];
 }
 
-- (void)registerNotification:(NSInteger )alerTime
+- (void)registerNotification:(NSInteger )alertTime
 {
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
@@ -53,7 +64,7 @@
     content.body = [NSString localizedUserNotificationStringForKey:@"Hypnotize me!" arguments:nil];
     content.sound = [UNNotificationSound defaultSound];
     
-    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:alerTime repeats:NO];
+    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:alertTime repeats:NO];
     UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:@"FiveSecond"
                                                                           content:content trigger:trigger];
     //添加推送成功后的处理！

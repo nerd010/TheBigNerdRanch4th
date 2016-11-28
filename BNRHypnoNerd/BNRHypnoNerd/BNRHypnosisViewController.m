@@ -26,6 +26,12 @@
 - (void)loadView
 {
     BNRHypnosisView *backgroundView = [[BNRHypnosisView alloc] init];
+    
+    CGRect textFiledRect = CGRectMake(40, 70, 240, 30);
+    UITextField *textField = [[UITextField alloc] initWithFrame:textFiledRect];
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+    [backgroundView addSubview:textField];
+    
     self.view = backgroundView;
 }
 @end
