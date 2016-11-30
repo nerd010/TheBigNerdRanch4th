@@ -15,6 +15,7 @@
 		794B89D81DEF230100D0285E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 794B89D61DEF230100D0285E /* LaunchScreen.storyboard */; };
 		794B89E11DEF2B9100D0285E /* BNRItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 794B89E01DEF2B9100D0285E /* BNRItemsViewController.m */; };
 		794B89E41DEF2F0C00D0285E /* BNRItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 794B89E31DEF2F0C00D0285E /* BNRItem.m */; };
+		794B89E71DEF30BC00D0285E /* BNRItemStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 794B89E61DEF30BC00D0285E /* BNRItemStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		794B89E01DEF2B9100D0285E /* BNRItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItemsViewController.m; sourceTree = "<group>"; };
 		794B89E21DEF2F0C00D0285E /* BNRItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRItem.h; sourceTree = "<group>"; };
 		794B89E31DEF2F0C00D0285E /* BNRItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItem.m; sourceTree = "<group>"; };
+		794B89E51DEF30BC00D0285E /* BNRItemStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRItemStore.h; sourceTree = "<group>"; };
+		794B89E61DEF30BC00D0285E /* BNRItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItemStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +75,8 @@
 				794B89E01DEF2B9100D0285E /* BNRItemsViewController.m */,
 				794B89E21DEF2F0C00D0285E /* BNRItem.h */,
 				794B89E31DEF2F0C00D0285E /* BNRItem.m */,
+				794B89E51DEF30BC00D0285E /* BNRItemStore.h */,
+				794B89E61DEF30BC00D0285E /* BNRItemStore.m */,
 				794B89D11DEF230100D0285E /* Main.storyboard */,
 				794B89D41DEF230100D0285E /* Assets.xcassets */,
 				794B89D61DEF230100D0285E /* LaunchScreen.storyboard */,
@@ -166,6 +171,7 @@
 				794B89E41DEF2F0C00D0285E /* BNRItem.m in Sources */,
 				794B89E11DEF2B9100D0285E /* BNRItemsViewController.m in Sources */,
 				794B89CA1DEF230100D0285E /* main.m in Sources */,
+				794B89E71DEF30BC00D0285E /* BNRItemStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
