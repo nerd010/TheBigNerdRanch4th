@@ -13,6 +13,8 @@
 		794B89D31DEF230100D0285E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 794B89D11DEF230100D0285E /* Main.storyboard */; };
 		794B89D51DEF230100D0285E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 794B89D41DEF230100D0285E /* Assets.xcassets */; };
 		794B89D81DEF230100D0285E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 794B89D61DEF230100D0285E /* LaunchScreen.storyboard */; };
+		794B89E11DEF2B9100D0285E /* BNRItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 794B89E01DEF2B9100D0285E /* BNRItemsViewController.m */; };
+		794B89E41DEF2F0C00D0285E /* BNRItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 794B89E31DEF2F0C00D0285E /* BNRItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		794B89D41DEF230100D0285E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		794B89D71DEF230100D0285E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		794B89D91DEF230100D0285E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		794B89DF1DEF2B9100D0285E /* BNRItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRItemsViewController.h; sourceTree = "<group>"; };
+		794B89E01DEF2B9100D0285E /* BNRItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItemsViewController.m; sourceTree = "<group>"; };
+		794B89E21DEF2F0C00D0285E /* BNRItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRItem.h; sourceTree = "<group>"; };
+		794B89E31DEF2F0C00D0285E /* BNRItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,10 @@
 				794B89CC1DEF230100D0285E /* AppDelegate.m */,
 				794B89CE1DEF230100D0285E /* ViewController.h */,
 				794B89CF1DEF230100D0285E /* ViewController.m */,
+				794B89DF1DEF2B9100D0285E /* BNRItemsViewController.h */,
+				794B89E01DEF2B9100D0285E /* BNRItemsViewController.m */,
+				794B89E21DEF2F0C00D0285E /* BNRItem.h */,
+				794B89E31DEF2F0C00D0285E /* BNRItem.m */,
 				794B89D11DEF230100D0285E /* Main.storyboard */,
 				794B89D41DEF230100D0285E /* Assets.xcassets */,
 				794B89D61DEF230100D0285E /* LaunchScreen.storyboard */,
@@ -153,6 +163,8 @@
 			files = (
 				794B89D01DEF230100D0285E /* ViewController.m in Sources */,
 				794B89CD1DEF230100D0285E /* AppDelegate.m in Sources */,
+				794B89E41DEF2F0C00D0285E /* BNRItem.m in Sources */,
+				794B89E11DEF2B9100D0285E /* BNRItemsViewController.m in Sources */,
 				794B89CA1DEF230100D0285E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
