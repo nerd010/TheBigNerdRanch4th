@@ -7,6 +7,16 @@
 //
 
 #import "BNRItemsViewController.h"
+#import "BNRItemStore.h"
+#import "BNRItem.h"
+
+@interface BNRItemsViewController ()
+{
+    NSMutableArray *sectionArray;
+    NSMutableArray *maxFiftyArray;
+    NSMutableArray *minFiftyArray;
+}
+@end
 
 @implementation BNRItemsViewController
 
@@ -15,7 +25,12 @@
     self = [super initWithStyle:UITableViewStylePlain];
     if (self)
     {
-        
+        for (int i = 0; i < 5; i++) {
+            [[BNRItemStore sharedStore] createItems];
+        }
+        sectionArray = [[NSMutableArray alloc] init];
+        maxFiftyArray = [[NSMutableArray alloc] init];
+        minFiftyArray = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -26,4 +41,48 @@
     return [self init];
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSArray *items = [BNRItemStore sharedStore].allItems;
+    return items.count + 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+    NSArray *items = [[BNRItemStore sharedStore] allItems];
+    //最后一行显示 No more items!
+    if (items.count == indexPath.row)
+    {
+        cell.textLabel.text = @"No more items!";
+        return cell;
+    }
+    BNRItem *item = items[indexPath.row];
+    cell.textLabel.text = item.description;
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *items = [[BNRItemStore sharedStore] allItems];
+    //UITableView *cell = [tableView dequeueReusableCellWithIdentifier:@""];
+    if (items.count == indexPath.row)
+    {
+        return 44;
+    }
+    return 60;
+}
 @end
