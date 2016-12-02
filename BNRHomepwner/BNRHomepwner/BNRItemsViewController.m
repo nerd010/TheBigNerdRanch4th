@@ -11,11 +11,7 @@
 #import "BNRItem.h"
 
 @interface BNRItemsViewController ()
-{
-    NSMutableArray *sectionArray;
-    NSMutableArray *maxFiftyArray;
-    NSMutableArray *minFiftyArray;
-}
+
 @end
 
 @implementation BNRItemsViewController
@@ -28,9 +24,6 @@
         for (int i = 0; i < 5; i++) {
             [[BNRItemStore sharedStore] createItems];
         }
-        sectionArray = [[NSMutableArray alloc] init];
-        maxFiftyArray = [[NSMutableArray alloc] init];
-        minFiftyArray = [[NSMutableArray alloc] init];
     }
     return self;
 }
