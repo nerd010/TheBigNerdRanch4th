@@ -105,14 +105,34 @@
     }
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+        return @"Remove";
+}
+
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-    NSArray *items = [[BNRItemStore sharedStore] allItems];
-    if (sourceIndexPath.row == items.count || destinationIndexPath.row == items.count)
-    {
-        return;
-    }
     [[BNRItemStore sharedStore] moveItemAtIndex:sourceIndexPath.row toIndex:destinationIndexPath.row];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *items = [[BNRItemStore sharedStore] allItems];
+    if (items.count == indexPath.row)
+    {
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *items = [[BNRItemStore sharedStore] allItems];
+    if (items.count == indexPath.row)
+    {
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark -- HeaderView Method

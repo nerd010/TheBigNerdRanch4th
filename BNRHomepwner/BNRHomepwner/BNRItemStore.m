@@ -63,15 +63,17 @@
 - (void)moveItemAtIndex:(NSUInteger)fromIndex
                 toIndex:(NSUInteger)toIndex
 {
-    if (fromIndex == toIndex)
+    if (fromIndex == toIndex || self.privateItems.count == toIndex)
     {
         return;
     }
-    
-    //要移动的对象的指针
-    BNRItem *item = self.privateItems[fromIndex];
-    [self.privateItems removeObjectAtIndex:fromIndex];
-    [self.privateItems insertObject:item atIndex:toIndex];
+    else
+    {
+        //要移动的对象的指针
+        BNRItem *item = self.privateItems[fromIndex];
+        [self.privateItems removeObjectAtIndex:fromIndex];
+        [self.privateItems insertObject:item atIndex:toIndex];
+    }
 }
 
 @end
