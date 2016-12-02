@@ -23,9 +23,6 @@
     self = [super initWithStyle:UITableViewStylePlain];
     if (self)
     {
-        for (int i = 0; i < 5; i++) {
-            [[BNRItemStore sharedStore] createItem];
-        }
     }
     return self;
 }
@@ -90,6 +87,22 @@
         return 44;
     }
     return 60;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        NSArray *items = [[BNRItemStore sharedStore] allItems];
+        if (items.count == indexPath.row)
+        {
+            [self setEditing:NO animated:YES];
+            return;
+        }
+        BNRItem *item = items[indexPath.row];
+        [[BNRItemStore sharedStore] removeItem:item];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 #pragma mark -- HeaderView Method
