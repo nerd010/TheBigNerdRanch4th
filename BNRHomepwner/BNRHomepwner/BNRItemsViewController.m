@@ -105,6 +105,16 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    NSArray *items = [[BNRItemStore sharedStore] allItems];
+    if (sourceIndexPath.row == items.count || destinationIndexPath.row == items.count)
+    {
+        return;
+    }
+    [[BNRItemStore sharedStore] moveItemAtIndex:sourceIndexPath.row toIndex:destinationIndexPath.row];
+}
+
 #pragma mark -- HeaderView Method
 - (IBAction)addNewItem:(id)sender
 {
