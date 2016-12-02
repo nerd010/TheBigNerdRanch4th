@@ -24,7 +24,7 @@
     if (self)
     {
         for (int i = 0; i < 5; i++) {
-            [[BNRItemStore sharedStore] createItems];
+            [[BNRItemStore sharedStore] createItem];
         }
     }
     return self;
@@ -92,13 +92,32 @@
     return 60;
 }
 
+#pragma mark -- HeaderView Method
 - (IBAction)addNewItem:(id)sender
 {
-
+    //创建 NSIndexPath 对象，代表的位置是：第一个表格段，最后一个表格行
+//    NSInteger lastRow = [self.tableView numberOfRowsInSection:0];
+    //创建新的 BNRItem 对象并将其加入 BNRItemStore 对象
+    BNRItem *newItem = [[BNRItemStore sharedStore] createItem];
+    NSInteger lastRow = [[[BNRItemStore sharedStore] allItems] indexOfObject:newItem];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lastRow inSection:0];
+    //将新行插入 UITableView 对象
+    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
 }
 
 - (IBAction)toggleEditingMode:(id)sender
 {
-
+    if (self.isEditing)
+    {
+        //修改按钮文字，提示用户当前的表格状态
+        [sender setTitle:@"Edit" forState:UIControlStateNormal];
+        //关闭编辑模式
+        [self setEditing:NO animated:YES];
+    }
+    else
+    {
+        [sender setTitle:@"Done" forState:UIControlStateNormal];
+        [self setEditing:YES animated:YES];
+    }
 }
 @end
