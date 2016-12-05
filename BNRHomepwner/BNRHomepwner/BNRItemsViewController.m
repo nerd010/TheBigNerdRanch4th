@@ -48,7 +48,14 @@
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     UIView *header = self.headerView;
-    [self.tableView setTableHeaderView:_headerView];
+    [self.tableView setTableHeaderView:header];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.tableView reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
