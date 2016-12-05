@@ -12,8 +12,6 @@
 
 @interface BNRItemsViewController ()
 
-@property (nonatomic, strong) IBOutlet UIView *headerView;
-
 @end
 
 @implementation BNRItemsViewController
@@ -25,6 +23,10 @@
     {
         UINavigationItem *navItem = self.navigationItem;
         navItem.title = @"Homepwner";
+        
+        UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewItem:)];
+        navItem.rightBarButtonItem = bbi;
+        navItem.leftBarButtonItem = self.editButtonItem;
     }
     return self;
 }
@@ -35,22 +37,11 @@
     return [self init];
 }
 
-- (UIView *)headerView
-{
-    if (!_headerView)
-    {
-        [[NSBundle mainBundle] loadNibNamed:@"HeaderView" owner:self options:nil];
-    }
-    return _headerView;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
-    UIView *header = self.headerView;
-    [self.tableView setTableHeaderView:header];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -90,7 +81,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSArray *items = [[BNRItemStore sharedStore] allItems];
-    //UITableView *cell = [tableView dequeueReusableCellWithIdentifier:@""];
     if (items.count == indexPath.row)
     {
         return 44;
@@ -166,19 +156,4 @@
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
 }
 
-- (IBAction)toggleEditingMode:(id)sender
-{
-    if (self.isEditing)
-    {
-        //修改按钮文字，提示用户当前的表格状态
-        [sender setTitle:@"Edit" forState:UIControlStateNormal];
-        //关闭编辑模式
-        [self setEditing:NO animated:YES];
-    }
-    else
-    {
-        [sender setTitle:@"Done" forState:UIControlStateNormal];
-        [self setEditing:YES animated:YES];
-    }
-}
 @end
