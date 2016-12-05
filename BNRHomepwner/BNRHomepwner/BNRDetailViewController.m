@@ -58,4 +58,9 @@
     item.valueInDollars = self.valueField.text.intValue;
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.valueField resignFirstResponder];
+}
+
 @end
