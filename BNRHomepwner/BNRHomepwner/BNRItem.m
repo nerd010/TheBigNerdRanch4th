@@ -43,7 +43,13 @@
         _valueInDollars = value;
         _serialNumber = sNumber;
         _dateCreated = [[NSDate alloc] init];
+        
+        //创建一个 NSUUID 对象，然后获取其 NSString 类型的值
+        NSUUID *uuid = [[NSUUID alloc] init];
+        NSString *key = [uuid UUIDString];
+        _itemKey = key;
     }
+    //返回初始化后的新地址
     return self;
 }
 

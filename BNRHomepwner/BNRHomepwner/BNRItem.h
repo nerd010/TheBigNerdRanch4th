@@ -24,6 +24,8 @@
 @property (nonatomic, assign) int valueInDollars;
 @property (nonatomic, readonly, strong) NSDate *dateCreated;
 
+@property (nonatomic, copy) NSString *itemKey;
+
 + (instancetype)randomItem;
 
 // BNRItem 类的指定初始化方法

@@ -8,6 +8,7 @@
 
 #import "BNRDetailViewController.h"
 #import "BNRItem.h"
+#import "BNRImageStore.h"
 
 @interface BNRDetailViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
@@ -43,8 +44,11 @@
         dateFormatter.dateStyle = NSDateFormatterMediumStyle;
         dateFormatter.timeStyle = NSDateFormatterNoStyle;
     }
-    
     self.dateLabel.text = [dateFormatter stringFromDate:item.dateCreated];
+    
+    NSString *itemKey = item.itemKey;
+    UIImage *imageToDisplay = [[BNRImageStore sharedStore] imageForKey:itemKey];
+    self.imageView.image = imageToDisplay;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -88,7 +92,7 @@
 {
     //通过 info 字典获取选择的照片
     UIImage *image = info[UIImagePickerControllerOriginalImage];
-    
+    [[BNRImageStore sharedStore] setImage:image forKey:self.item.itemKey];
     //将照片放入 UIImageView 对象
     self.imageView.image = image;
     
