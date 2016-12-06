@@ -56,4 +56,33 @@
     }
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    UITouch *t = [touches anyObject];
+    //根据触摸位置创建 BNRLine 对象
+    CGPoint location = [t locationInView:self];
+    
+    self.currentLine = [[BNRLine alloc] init];
+    self.currentLine.begin = location;
+    self.currentLine.end = location;
+    
+    [self setNeedsDisplay];
+}
+
+- (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    UITouch *t = [touches anyObject];
+    CGPoint location = [t locationInView:self];
+    self.currentLine.end = location;
+    [self setNeedsDisplay];
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.finishedLines addObject:self.currentLine];
+    self.currentLine = nil;
+    
+    [self setNeedsDisplay];
+}
+
 @end
