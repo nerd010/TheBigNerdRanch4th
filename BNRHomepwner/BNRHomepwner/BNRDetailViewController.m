@@ -10,7 +10,7 @@
 #import "BNRItem.h"
 #import "BNRImageStore.h"
 
-@interface BNRDetailViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface BNRDetailViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *serialNumberField;
@@ -64,12 +64,17 @@
     item.valueInDollars = self.valueField.text.intValue;
 }
 
+- (IBAction)backgroundTapped:(id)sender
+{
+    [self.view endEditing:YES];
+}
+
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self.valueField resignFirstResponder];
 }
 
-#pragma --mark UIImagePickerViewController
+#pragma mark - UIImagePickerViewController
 - (IBAction)takePicture:(id)sender
 {
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
@@ -85,6 +90,9 @@
     }
     
     imagePicker.delegate = self;
+
+    imagePicker.allowsEditing = YES;
+    imagePicker.showsCameraControls = YES;
     [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
@@ -99,4 +107,12 @@
     // 关闭 UIImagePickerController 对象
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
 @end
