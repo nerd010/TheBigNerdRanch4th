@@ -14,6 +14,8 @@
 @property (nonatomic, strong) NSMutableDictionary *linesInProgress;
 @property (nonatomic, strong) NSMutableArray *finishedLines;
 
+@property (nonatomic, weak) BNRLine *selectedLine;
+
 @end
 
 @implementation BNRDeawView
@@ -29,7 +31,13 @@
         
         UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
         doubleTapRecognizer.numberOfTapsRequired = 2;
+        doubleTapRecognizer.delaysTouchesBegan = YES;
         [self addGestureRecognizer:doubleTapRecognizer];
+        
+        UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+        tapRecognizer.delaysTouchesBegan = YES;
+        [tapRecognizer requireGestureRecognizerToFail:doubleTapRecognizer];
+        [self addGestureRecognizer:tapRecognizer];
     }
     return self;
 }
@@ -60,6 +68,36 @@
     {
         [self strokeLine:self.linesInProgress[key]];
     }
+    
+    if (self.selectedLine)
+    {
+        [[UIColor greenColor] set];
+        [self strokeLine:self.selectedLine];
+    }
+}
+
+- (BNRLine *)lineAtPoint:(CGPoint)p
+{
+    //找出离 p 最近的 BNRLine 对象
+    for (BNRLine *l in self.finishedLines)
+    {
+        CGPoint start = l.begin;
+        CGPoint end = l.end;
+        
+        for (float t = 0.0; t <= 1.0; t += 0.05)
+        {
+            float x = start.x + t * (end.x - start.x);
+            float y = start.y + t * (end.y - start.y);
+            // 如果线条的某个点和 p 的距离在 20 点以内， 就返回相应的 BNRLine 对象
+            if (hypot(x - p.x, y - p.y) < 20.0)
+            {
+                return l;
+            }
+        }
+    }
+    
+    // 如果没能找到符合条件的线条，返回 nil, 代表不选择任何线条
+    return nil;
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -122,11 +160,22 @@
     [self setNeedsDisplay];
 }
 
+#pragma mark --UIGestureRecognizer Methods
 - (void)doubleTap:(UIGestureRecognizer *)gr
 {
     NSLog(@"Recognized Double Tap");
     [self.linesInProgress removeAllObjects];
     [self.finishedLines removeAllObjects];
+    [self setNeedsDisplay];
+}
+
+- (void)tap:(UIGestureRecognizer *)gr
+{
+    NSLog(@"Recognized tap");
+    
+    CGPoint point = [gr locationInView:self];
+    self.selectedLine = [self lineAtPoint:point];
+    
     [self setNeedsDisplay];
 }
 @end
