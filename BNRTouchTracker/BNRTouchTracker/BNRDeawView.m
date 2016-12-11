@@ -176,6 +176,31 @@
     CGPoint point = [gr locationInView:self];
     self.selectedLine = [self lineAtPoint:point];
     
+    if (self.selectedLine)
+    {
+        [self becomeFirstResponder];
+        UIMenuController *menu = [UIMenuController sharedMenuController];
+        UIMenuItem *deleteItem = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(deleteLine:)];
+        menu.menuItems = @[deleteItem];
+        [menu setTargetRect:CGRectMake(point.x, point.y, 2, 2) inView:self];
+        [menu setMenuVisible:YES animated:YES];
+    }
+    else
+    {
+        [[UIMenuController sharedMenuController] setMenuVisible:NO animated:YES];
+    }
     [self setNeedsDisplay];
+}
+
+- (void)deleteLine:(id)sender
+{
+    [self.finishedLines removeObject:self.selectedLine];
+    // 重画整个视图
+    [self setNeedsDisplay];
+}
+
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
 }
 @end
