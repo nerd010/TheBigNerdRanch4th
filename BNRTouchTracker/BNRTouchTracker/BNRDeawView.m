@@ -9,8 +9,9 @@
 #import "BNRDeawView.h"
 #import "BNRLine.h"
 
-@interface BNRDeawView ()
+@interface BNRDeawView ()<UIGestureRecognizerDelegate>
 
+@property (nonatomic, strong) UIPanGestureRecognizer *moveRecognizer;
 @property (nonatomic, strong) NSMutableDictionary *linesInProgress;
 @property (nonatomic, strong) NSMutableArray *finishedLines;
 
@@ -41,6 +42,10 @@
         
         UILongPressGestureRecognizer *pressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
         [self addGestureRecognizer:pressRecognizer];
+        
+        self.moveRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moveLine:)];
+        self.moveRecognizer.cancelsTouchesInView = NO;
+        [self addGestureRecognizer:self.moveRecognizer];
     }
     return self;
 }
@@ -143,8 +148,11 @@
     {
         NSValue *key = [NSValue valueWithNonretainedObject:t];
         BNRLine *line = self.linesInProgress[key];
-        [self.finishedLines addObject:line];
-        [self.linesInProgress removeObjectForKey:key];
+        if (line)
+        {
+            [self.finishedLines addObject:line];
+            [self.linesInProgress removeObjectForKey:key];
+        }
     }
     
     [self setNeedsDisplay];
@@ -161,6 +169,15 @@
     }
     
     [self setNeedsDisplay];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    if (gestureRecognizer == self.moveRecognizer)
+    {
+        return YES;
+    }
+    return NO;
 }
 
 #pragma mark --UIGestureRecognizer Methods
@@ -204,7 +221,8 @@
         
         if (self.selectedLine)
         {
-            [self.finishedLines removeObject:self.selectedLine];
+            //会影响 pan 手势
+            //[self.finishedLines removeObject:self.selectedLine];
         }
     }
     else
@@ -212,6 +230,39 @@
         self.selectedLine = nil;
     }
     [self setNeedsDisplay];
+}
+
+- (void)moveLine:(UIPanGestureRecognizer *)gr
+{
+    [[UIMenuController sharedMenuController] setMenuVisible:NO animated:YES];
+    
+    if (!self.selectedLine)
+    {
+        return;
+    }
+    
+    if (gr.state == UIGestureRecognizerStateChanged)
+    {
+        CGPoint translation = [gr translationInView:self];
+        CGPoint begin = self.selectedLine.begin;
+        CGPoint end = self.selectedLine.end;
+        begin.x += translation.x;
+        begin.y += translation.y;
+        end.x += translation.x;
+        end.y += translation.y;
+        
+        self.selectedLine.begin = begin;
+        self.selectedLine.end = end;
+        
+        [self setNeedsDisplay];
+        
+        [gr setTranslation: CGPointZero inView: self];
+    }
+    if (self.linesInProgress)
+    {
+        [self.linesInProgress removeAllObjects];
+    }
+    
 }
 
 - (void)deleteLine:(id)sender
