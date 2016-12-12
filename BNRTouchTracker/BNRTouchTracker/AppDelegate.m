@@ -23,6 +23,9 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
+#ifdef VIEW_DEBUG
+    NSLog(@"====111====%@", [self.window performSelector:@selector(recursiveDescription)]);
+#endif
     return YES;
 }
 
