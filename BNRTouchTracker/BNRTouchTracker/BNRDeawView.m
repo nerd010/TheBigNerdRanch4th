@@ -38,6 +38,9 @@
         tapRecognizer.delaysTouchesBegan = YES;
         [tapRecognizer requireGestureRecognizerToFail:doubleTapRecognizer];
         [self addGestureRecognizer:tapRecognizer];
+        
+        UILongPressGestureRecognizer *pressRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPress:)];
+        [self addGestureRecognizer:pressRecognizer];
     }
     return self;
 }
@@ -188,6 +191,25 @@
     else
     {
         [[UIMenuController sharedMenuController] setMenuVisible:NO animated:YES];
+    }
+    [self setNeedsDisplay];
+}
+
+- (void)longPress:(UIGestureRecognizer *)gr
+{
+    if (gr.state == UIGestureRecognizerStateBegan)
+    {
+        CGPoint point = [gr locationInView:self];
+        self.selectedLine = [self lineAtPoint:point];
+        
+        if (self.selectedLine)
+        {
+            [self.finishedLines removeObject:self.selectedLine];
+        }
+    }
+    else
+    {
+        self.selectedLine = nil;
     }
     [self setNeedsDisplay];
 }
