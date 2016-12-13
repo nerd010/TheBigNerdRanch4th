@@ -116,7 +116,7 @@
     if (items.count == indexPath.row) { return; }
     
     BNRItem *selectItem = items[indexPath.row];
-    BNRDetailViewController *detailViewController = [[BNRDetailViewController alloc] init];
+    BNRDetailViewController *detailViewController = [[BNRDetailViewController alloc] initForNewItem:NO];
     detailViewController.item = selectItem;
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
@@ -153,10 +153,14 @@
 //    NSInteger lastRow = [self.tableView numberOfRowsInSection:0];
     //创建新的 BNRItem 对象并将其加入 BNRItemStore 对象
     BNRItem *newItem = [[BNRItemStore sharedStore] createItem];
-    NSInteger lastRow = [[[BNRItemStore sharedStore] allItems] indexOfObject:newItem];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:lastRow inSection:0];
-    //将新行插入 UITableView 对象
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
+    BNRDetailViewController *detailViewController = [[BNRDetailViewController alloc] initForNewItem:YES];
+    detailViewController.item = newItem;
+    detailViewController.dismissBlock = ^{
+        [self.tableView reloadData];
+    };
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
+    navController.modalPresentationStyle = UIModalPresentationFormSheet; 
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 @end

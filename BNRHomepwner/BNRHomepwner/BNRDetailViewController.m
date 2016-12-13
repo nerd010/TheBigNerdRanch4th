@@ -9,9 +9,11 @@
 #import "BNRDetailViewController.h"
 #import "BNRItem.h"
 #import "BNRImageStore.h"
+#import "BNRItemStore.h"
 
-@interface BNRDetailViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate, UITextFieldDelegate>
+@interface BNRDetailViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate, UITextFieldDelegate, UIPopoverControllerDelegate>
 
+@property (nonatomic, strong) UIPopoverController *imagePickerPopover;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *serialNumberField;
 @property (weak, nonatomic) IBOutlet UITextField *valueField;
@@ -23,6 +25,29 @@
 @end
 
 @implementation BNRDetailViewController
+
+- (instancetype)initForNewItem:(BOOL)isNew
+{
+    self = [super initWithNibName:nil bundle:nil];
+    if (self)
+    {
+        if (isNew)
+        {
+            UIBarButtonItem *doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(save:)];
+            self.navigationItem.rightBarButtonItem = doneItem;
+            UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
+            self.navigationItem.leftBarButtonItem = cancelItem;
+        }
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    @throw [NSException exceptionWithName:@"Wrong initializer" reason:@"Use initForNewItem:" userInfo:nil];
+    return nil;
+}
 
 - (void)setItem:(BNRItem *)item
 {
@@ -119,10 +144,10 @@
 {
     __weak typeof(self) weakSelf = self;
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
         UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
         [weakSelf prepareViewsForOrientation:orientation];
-    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-        
     }];
 }
 #else
@@ -142,9 +167,29 @@
     [self.valueField resignFirstResponder];
 }
 
+- (void)save:(id)sender
+{
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:self.dismissBlock];
+}
+
+- (void)cancel:(id)sender
+{
+    [[BNRItemStore sharedStore] removeItem:self.item];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:self.dismissBlock];
+}
+
 #pragma mark - UIImagePickerViewController
 - (IBAction)takePicture:(id)sender
 {
+    if ([self.imagePickerPopover isPopoverVisible])
+    {
+        //如果 imagePickerPopover 指向的是有效的 UIPopoverController 对象，
+        //并且该对象的视图是可见的，就关闭这个对象，并将其设置为 nil
+        [self.imagePickerPopover dismissPopoverAnimated:YES];
+        self.imagePickerPopover = nil;
+        return;
+    }
+    
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     //如果设备支持相机，就使用拍照模式
     //否则让用户从照片库中选择照片
@@ -164,6 +209,32 @@
     [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
+//-(void)popView{
+//    
+//    _popVC = [[PopViewController alloc] init];
+//    
+//    
+//    _popVC.modalPresentationStyle = UIModalPresentationPopover;
+//    
+//    //设置依附的按钮
+//    _popVC.popoverPresentationController.barButtonItem = self.navigationItem.rightBarButtonItem;
+//    
+//    //可以指示小箭头颜色
+//    _popVC.popoverPresentationController.backgroundColor = [UIColor whiteColor];
+//    
+//    //content尺寸
+//    _popVC.preferredContentSize = CGSizeMake(400, 400);
+//    
+//    //pop方向
+//    _popVC.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionUp;
+//    //delegate
+//    _popVC.popoverPresentationController.delegate = self;
+//    
+//    [self presentViewController:_popVC animated:YES completion:nil];
+//    
+//    
+//    
+//}
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     //通过 info 字典获取选择的照片
