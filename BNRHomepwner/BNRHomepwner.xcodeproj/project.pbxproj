@@ -11,7 +11,6 @@
 		790E67341DF5155500D247E7 /* BNRDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 790E67321DF5155500D247E7 /* BNRDetailViewController.xib */; };
 		794B89CA1DEF230100D0285E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 794B89C91DEF230100D0285E /* main.m */; };
 		794B89CD1DEF230100D0285E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 794B89CC1DEF230100D0285E /* AppDelegate.m */; };
-		794B89D31DEF230100D0285E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 794B89D11DEF230100D0285E /* Main.storyboard */; };
 		794B89D51DEF230100D0285E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 794B89D41DEF230100D0285E /* Assets.xcassets */; };
 		794B89D81DEF230100D0285E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 794B89D61DEF230100D0285E /* LaunchScreen.storyboard */; };
 		794B89E11DEF2B9100D0285E /* BNRItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 794B89E01DEF2B9100D0285E /* BNRItemsViewController.m */; };
@@ -28,7 +27,6 @@
 		794B89C91DEF230100D0285E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		794B89CB1DEF230100D0285E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		794B89CC1DEF230100D0285E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		794B89D21DEF230100D0285E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		794B89D41DEF230100D0285E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		794B89D71DEF230100D0285E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		794B89D91DEF230100D0285E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,7 +83,6 @@
 				794B89E61DEF30BC00D0285E /* BNRItemStore.m */,
 				79CDE0E41DF669FE00FBDD55 /* BNRImageStore.h */,
 				79CDE0E51DF669FE00FBDD55 /* BNRImageStore.m */,
-				794B89D11DEF230100D0285E /* Main.storyboard */,
 				794B89D41DEF230100D0285E /* Assets.xcassets */,
 				794B89D61DEF230100D0285E /* LaunchScreen.storyboard */,
 				794B89D91DEF230100D0285E /* Info.plist */,
@@ -163,7 +160,6 @@
 			files = (
 				794B89D81DEF230100D0285E /* LaunchScreen.storyboard in Resources */,
 				794B89D51DEF230100D0285E /* Assets.xcassets in Resources */,
-				794B89D31DEF230100D0285E /* Main.storyboard in Resources */,
 				790E67341DF5155500D247E7 /* BNRDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -188,14 +184,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		794B89D11DEF230100D0285E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				794B89D21DEF230100D0285E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		794B89D61DEF230100D0285E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -304,6 +292,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chw.BNRHomepwner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -316,6 +305,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.chw.BNRHomepwner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
