@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
 
 @end
 
@@ -58,6 +59,9 @@
 {
     [super viewWillAppear:animated];
     
+    UIInterfaceOrientation io = [[UIApplication sharedApplication] statusBarOrientation];
+    [self prepareViewsForOrientation:io];
+    
     BNRItem *item = self.item;
     self.nameField.text = item.itemName;
     self.serialNumberField.text = item.serialNumber;
@@ -88,6 +92,45 @@
     item.serialNumber = self.serialNumberField.text;
     item.valueInDollars = self.valueField.text.intValue;
 }
+
+- (void)prepareViewsForOrientation:(UIInterfaceOrientation)orientation
+{
+    // 如果是 iPad，则不执行任何操作
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    {
+        return;
+    }
+    
+    // 判断设备是否处于横排方向
+    if (UIInterfaceOrientationIsLandscape(orientation))
+    {
+        self.imageView.hidden = YES;
+        self.cameraButton.enabled = NO;
+    }
+    else
+    {
+        self.imageView.hidden = NO;
+        self.cameraButton.enabled = YES;
+    }
+}
+
+#ifdef __IPHONE_8_0
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    __weak typeof(self) weakSelf = self;
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+        [weakSelf prepareViewsForOrientation:orientation];
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        
+    }];
+}
+#else
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [self prepareViewsForOrientation:toInterfaceOrientation];
+}
+#endif
 
 - (IBAction)backgroundTapped:(id)sender
 {
