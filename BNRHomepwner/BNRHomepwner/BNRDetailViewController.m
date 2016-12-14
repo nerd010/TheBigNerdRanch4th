@@ -209,32 +209,6 @@
     [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
-//-(void)popView{
-//    
-//    _popVC = [[PopViewController alloc] init];
-//    
-//    
-//    _popVC.modalPresentationStyle = UIModalPresentationPopover;
-//    
-//    //设置依附的按钮
-//    _popVC.popoverPresentationController.barButtonItem = self.navigationItem.rightBarButtonItem;
-//    
-//    //可以指示小箭头颜色
-//    _popVC.popoverPresentationController.backgroundColor = [UIColor whiteColor];
-//    
-//    //content尺寸
-//    _popVC.preferredContentSize = CGSizeMake(400, 400);
-//    
-//    //pop方向
-//    _popVC.popoverPresentationController.permittedArrowDirections = UIPopoverArrowDirectionUp;
-//    //delegate
-//    _popVC.popoverPresentationController.delegate = self;
-//    
-//    [self presentViewController:_popVC animated:YES completion:nil];
-//    
-//    
-//    
-//}
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
 {
     //通过 info 字典获取选择的照片
