@@ -213,7 +213,9 @@
 {
     //通过 info 字典获取选择的照片
     UIImage *image = info[UIImagePickerControllerOriginalImage];
+    [self.item setThumnailFromImage:image];
     [[BNRImageStore sharedStore] setImage:image forKey:self.item.itemKey];
+    
     //将照片放入 UIImageView 对象
     self.imageView.image = image;
     

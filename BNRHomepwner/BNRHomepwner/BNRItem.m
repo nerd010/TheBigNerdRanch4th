@@ -76,6 +76,7 @@
     [aCoder encodeObject:self.dateCreated forKey:@"dateCreated"];
     [aCoder encodeObject:self.itemKey forKey:@"itemKey"];
     [aCoder encodeInt:self.valueInDollars forKey:@"valueInDollars"];
+    [aCoder encodeObject:self.thumnail forKey:@"thumbnail"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
@@ -88,8 +89,36 @@
         _dateCreated = [aDecoder decodeObjectForKey:@"dateCreated"];
         _itemKey = [aDecoder decodeObjectForKey:@"itemKey"];
         _valueInDollars = [aDecoder decodeIntForKey:@"valueInDollars"];
+        _thumnail = [aDecoder decodeObjectForKey:@"thumbnail"];
     }
     return self;
+}
+
+- (void)setThumnailFromImage:(UIImage *)thumnail
+{
+    CGSize origImageSize = thumnail.size;
+    CGRect newRect = CGRectMake(0, 0, 40, 40);
+    // 确定缩放倍数并保持宽高比不变
+    float ratio = MAX(newRect.size.width / origImageSize.width, newRect.size.height / origImageSize.height);
+    // 根据当前设备的屏幕 scaling factor 创建透明的位图上下文
+    UIGraphicsBeginImageContextWithOptions(newRect.size, NO, 0.0);
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:newRect cornerRadius:5.0];
+    // 根据 UIBezierPath 对象裁剪图形上下文
+    [path addClip];
+    
+    // 让图片在缩略图绘制范围内居中
+    CGRect projectRect;
+    projectRect.size.width = ratio * origImageSize.width;
+    projectRect.size.height = ratio * origImageSize.height;
+    projectRect.origin.x = (newRect.size.width - projectRect.size.width) / 2;
+    projectRect.origin.y = (newRect.size.height - projectRect.size.height) / 2;
+    
+    // 在上下文中绘制图片
+    [thumnail drawInRect:projectRect];
+    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
+    self.thumnail = smallImage;
+    // 清理图形上下文
+    UIGraphicsEndImageContext();
 }
 
 #if (0)

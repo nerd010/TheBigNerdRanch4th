@@ -66,20 +66,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     BNRItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bnrItemCell" forIndexPath:indexPath];
-//    if (!cell)
-//    {
-//        cell = [[NSBundle mainBundle] loadNibNamed:@"BNRItemCell" owner:nil options:nil].firstObject;
-//    }
+
     NSArray *items = [[BNRItemStore sharedStore] allItems];
     //最后一行显示 No more items!
     if (items.count == indexPath.row)
     {
+        cell.thumbnailView.image = nil;
         cell.nameLabel.text = @"No more items!";
         cell.serialNumberLabel.text = @"";
         cell.valueLabel.text = @"";
         return cell;
     }
     BNRItem *item = items[indexPath.row];
+    cell.thumbnailView.image = item.thumnail;
     cell.nameLabel.text = item.itemName;
     cell.serialNumberLabel.text = item.serialNumber;
     cell.valueLabel.text = [NSString stringWithFormat:@"$%d", item.valueInDollars];
