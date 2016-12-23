@@ -9,6 +9,7 @@
 #import "BNRItemsViewController.h"
 #import "BNRItemStore.h"
 #import "BNRItem.h"
+#import "BNRItemCell.h"
 
 @interface BNRItemsViewController ()
 
@@ -33,7 +34,6 @@
 
 - (instancetype)initWithStyle:(UITableViewStyle)style
 {
-    //self = [super initWithStyle:UITableViewStylePlain];
     return [self init];
 }
 
@@ -41,7 +41,8 @@
 {
     [super viewDidLoad];
     
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
+    UINib *nib = [UINib nibWithNibName:@"BNRItemCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"bnrItemCell"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -64,16 +65,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell" forIndexPath:indexPath];
+    BNRItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"bnrItemCell" forIndexPath:indexPath];
+//    if (!cell)
+//    {
+//        cell = [[NSBundle mainBundle] loadNibNamed:@"BNRItemCell" owner:nil options:nil].firstObject;
+//    }
     NSArray *items = [[BNRItemStore sharedStore] allItems];
     //最后一行显示 No more items!
     if (items.count == indexPath.row)
     {
-        cell.textLabel.text = @"No more items!";
+        cell.nameLabel.text = @"No more items!";
+        cell.serialNumberLabel.text = @"";
+        cell.valueLabel.text = @"";
         return cell;
     }
     BNRItem *item = items[indexPath.row];
-    cell.textLabel.text = item.description;
+    cell.nameLabel.text = item.itemName;
+    cell.serialNumberLabel.text = item.serialNumber;
+    cell.valueLabel.text = [NSString stringWithFormat:@"$%d", item.valueInDollars];
     
     return cell;
 }
