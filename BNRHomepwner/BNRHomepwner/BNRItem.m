@@ -76,7 +76,7 @@
     [aCoder encodeObject:self.dateCreated forKey:@"dateCreated"];
     [aCoder encodeObject:self.itemKey forKey:@"itemKey"];
     [aCoder encodeInt:self.valueInDollars forKey:@"valueInDollars"];
-    [aCoder encodeObject:self.thumnail forKey:@"thumbnail"];
+    [aCoder encodeObject:self.thumnail forKey:@"thumnail"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
@@ -89,7 +89,7 @@
         _dateCreated = [aDecoder decodeObjectForKey:@"dateCreated"];
         _itemKey = [aDecoder decodeObjectForKey:@"itemKey"];
         _valueInDollars = [aDecoder decodeIntForKey:@"valueInDollars"];
-        _thumnail = [aDecoder decodeObjectForKey:@"thumbnail"];
+        _thumnail = [aDecoder decodeObjectForKey:@"thumnail"];
     }
     return self;
 }

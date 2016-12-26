@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qU8-4i-3l3">
@@ -35,7 +35,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJA-oA-qLo">
-                        <rect key="frame" x="254" y="12" width="42" height="21"/>
+                        <rect key="frame" x="254" y="11" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -49,14 +49,24 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lxL-Ut-pTi">
+                        <rect key="frame" x="8" y="2" width="40" height="40"/>
+                        <connections>
+                            <action selector="showImage:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xPq-BF-wUp"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="qU8-4i-3l3" firstAttribute="top" secondItem="lxL-Ut-pTi" secondAttribute="top" id="5iH-T1-hhe"/>
                     <constraint firstAttribute="bottom" secondItem="lyt-eA-fWM" secondAttribute="bottom" constant="1.5" id="8i1-Yq-0Bh"/>
                     <constraint firstItem="LzP-f8-AXv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="BE4-fu-yX5"/>
                     <constraint firstItem="qU8-4i-3l3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="E8S-YN-9DQ"/>
+                    <constraint firstItem="qU8-4i-3l3" firstAttribute="leading" secondItem="lxL-Ut-pTi" secondAttribute="leading" id="IXe-I9-AAg"/>
+                    <constraint firstItem="qU8-4i-3l3" firstAttribute="trailing" secondItem="lxL-Ut-pTi" secondAttribute="trailing" id="K0c-Tr-LYx"/>
                     <constraint firstItem="tJA-oA-qLo" firstAttribute="leading" secondItem="LzP-f8-AXv" secondAttribute="trailing" constant="8" id="VSp-0D-p2I"/>
                     <constraint firstItem="lyt-eA-fWM" firstAttribute="leading" secondItem="qU8-4i-3l3" secondAttribute="trailing" constant="8" id="aBv-fu-gxM"/>
                     <constraint firstItem="qU8-4i-3l3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bRc-oK-KMh"/>
+                    <constraint firstItem="qU8-4i-3l3" firstAttribute="bottom" secondItem="lxL-Ut-pTi" secondAttribute="bottom" id="bVG-qa-sEd"/>
                     <constraint firstItem="lyt-eA-fWM" firstAttribute="top" secondItem="LzP-f8-AXv" secondAttribute="bottom" constant="5" id="e1w-AT-u6o"/>
                     <constraint firstItem="tJA-oA-qLo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="eMI-fn-l4o"/>
                     <constraint firstItem="LzP-f8-AXv" firstAttribute="leading" secondItem="qU8-4i-3l3" secondAttribute="trailing" constant="8" id="pAy-8U-yPS"/>
