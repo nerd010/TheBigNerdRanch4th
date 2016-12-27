@@ -14,10 +14,24 @@
 
 @implementation BNRImageViewController
 
+- (void)loadView
+{
+    UIImageView *imageView = [[UIImageView alloc] init];
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.view = imageView;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    UIImageView *imageView = (UIImageView *)self.view;
+    imageView.image = self.image;
 }
 
 - (void)didReceiveMemoryWarning {

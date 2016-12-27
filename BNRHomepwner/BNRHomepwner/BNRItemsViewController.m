@@ -10,8 +10,12 @@
 #import "BNRItemStore.h"
 #import "BNRItem.h"
 #import "BNRItemCell.h"
+#import "BNRImageStore.h"
+#import "BNRImageViewController.h"
 
-@interface BNRItemsViewController ()
+@interface BNRItemsViewController () <UIPopoverControllerDelegate>
+
+@property (nonatomic, strong) UIPopoverController *imagePopover;
 
 @end
 
@@ -83,10 +87,36 @@
     cell.serialNumberLabel.text = item.serialNumber;
     cell.valueLabel.text = [NSString stringWithFormat:@"$%d", item.valueInDollars];
     
+    __weak typeof(cell) weakCell = cell;
     cell.actionBlock = ^{
         NSLog(@"Going to show image for %@", item);
+        
+        __strong typeof(weakCell) strongCell = weakCell;
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+        {
+            NSString *itemKey = item.itemKey;
+            UIImage *img = [[BNRImageStore sharedStore] imageForKey:itemKey];
+            if (!img)
+            {
+                return;
+            }
+            
+            CGRect rect = [self.view convertRect:strongCell.thumbnailView.bounds fromView:strongCell.thumbnailView];
+            BNRImageViewController *ivc = [[BNRImageViewController alloc] init];
+            ivc.image = img;
+            
+            self.imagePopover = [[UIPopoverController alloc] initWithContentViewController:ivc];
+            self.imagePopover.delegate = self;
+            self.imagePopover.popoverContentSize = CGSizeMake(600, 600);
+            [self.imagePopover presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        }
     };
     return cell;
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    self.imagePopover = nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
