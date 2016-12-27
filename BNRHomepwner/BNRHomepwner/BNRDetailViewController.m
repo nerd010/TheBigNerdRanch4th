@@ -22,6 +22,10 @@
 @property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cameraButton;
 
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *serialNumberLabel;
+@property (weak, nonatomic) IBOutlet UILabel *valueLabel;
+
 @end
 
 @implementation BNRDetailViewController
@@ -38,6 +42,9 @@
             UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
             self.navigationItem.leftBarButtonItem = cancelItem;
         }
+        
+        NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+        [defaultCenter addObserver:self selector:@selector(updateFonts) name:UIContentSizeCategoryDidChangeNotification object:nil];
     }
     
     return self;
@@ -103,6 +110,8 @@
     NSString *itemKey = item.itemKey;
     UIImage *imageToDisplay = [[BNRImageStore sharedStore] imageForKey:itemKey];
     self.imageView.image = imageToDisplay;
+    
+    [self updateFonts];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -116,6 +125,20 @@
     item.itemName = self.nameField.text;
     item.serialNumber = self.serialNumberField.text;
     item.valueInDollars = self.valueField.text.intValue;
+}
+
+- (void)updateFonts
+{
+    UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    
+    self.nameLabel.font = font;
+    self.serialNumberLabel.font = font;
+    self.valueLabel.font = font;
+    self.dateLabel.font = font;
+    
+    self.nameField.font = font;
+    self.serialNumberField.font = font;
+    self.valueField.font = font;
 }
 
 - (void)prepareViewsForOrientation:(UIInterfaceOrientation)orientation
@@ -228,6 +251,12 @@
 {
     [textField resignFirstResponder];
     return YES;
+}
+
+- (void)dealloc
+{
+    NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
+    [defaultCenter removeObserver:self];
 }
 
 @end
