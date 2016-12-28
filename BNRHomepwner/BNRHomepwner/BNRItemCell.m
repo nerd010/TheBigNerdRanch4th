@@ -13,6 +13,11 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self
+           selector:@selector(updateInterfaceForDynamicTypeSize)
+               name:UIContentSizeCategoryDidChangeNotification
+             object:nil];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -21,11 +26,26 @@
     // Configure the view for the selected state
 }
 
+- (void)updateInterfaceForDynamicTypeSize
+{
+    UIFont *font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    
+    self.nameLabel.font = font;
+    self.serialNumberLabel.font = font;
+    self.valueLabel.font = font;
+}
+
 - (IBAction)showImage:(id)sender
 {
     if (self.actionBlock)
     {
         self.actionBlock();
     }
+}
+
+- (void)dealloc
+{
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc removeObserver:self];
 }
 @end
