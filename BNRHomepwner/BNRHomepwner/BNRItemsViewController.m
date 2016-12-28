@@ -32,6 +32,9 @@
         UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewItem:)];
         navItem.rightBarButtonItem = bbi;
         navItem.leftBarButtonItem = self.editButtonItem;
+        
+        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+        [nc addObserver:self selector:@selector(updateTableViewForDynamicTypeSize) name:UIContentSizeCategoryDidChangeNotification object:nil];
     }
     return self;
 }
@@ -53,6 +56,30 @@
 {
     [super viewWillAppear:animated];
     
+//    [self.tableView reloadData];
+    [self updateTableViewForDynamicTypeSize];
+}
+
+- (void)updateTableViewForDynamicTypeSize
+{
+    static NSDictionary *cellHeightDictionary;
+    
+    if (!cellHeightDictionary)
+    {
+        cellHeightDictionary = @{
+                                 UIContentSizeCategoryExtraSmall : @44,
+                                 UIContentSizeCategorySmall : @44,
+                                 UIContentSizeCategoryMedium : @44,
+                                 UIContentSizeCategoryLarge : @44,
+                                 UIContentSizeCategoryExtraLarge : @55,
+                                 UIContentSizeCategoryExtraExtraLarge : @65,
+                                 UIContentSizeCategoryExtraExtraExtraLarge : @75
+                                 };
+    }
+    
+    NSString *userSize = [[UIApplication sharedApplication] preferredContentSizeCategory];
+    NSNumber *cellHeight = cellHeightDictionary[userSize];
+    [self.tableView setRowHeight:cellHeight.floatValue];
     [self.tableView reloadData];
 }
 
@@ -202,6 +229,12 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
     navController.modalPresentationStyle = UIModalPresentationFormSheet; 
     [self presentViewController:navController animated:YES completion:nil];
+}
+
+- (void)dealloc
+{
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc removeObserver:self];
 }
 
 @end
