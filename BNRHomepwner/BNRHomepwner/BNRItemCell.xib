@@ -21,7 +21,7 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qU8-4i-3l3">
                         <rect key="frame" x="8" y="2" width="40" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="40" id="DyY-da-azz"/>
+                            <constraint firstAttribute="width" constant="40" placeholder="YES" id="DyY-da-azz"/>
                             <constraint firstAttribute="height" constant="40" id="gz0-qp-UCA"/>
                         </constraints>
                     </imageView>
