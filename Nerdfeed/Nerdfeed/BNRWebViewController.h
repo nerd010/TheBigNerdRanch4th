@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface BNRWebViewController : UIViewController
+@interface BNRWebViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (nonatomic) NSURL *URL;
 

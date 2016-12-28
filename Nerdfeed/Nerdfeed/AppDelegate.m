@@ -10,7 +10,7 @@
 #import "BNRCoursesViewController.h"
 #import "BNRWebViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () 
 
 @end
 
@@ -26,7 +26,19 @@
     BNRWebViewController *wvc = [[BNRWebViewController alloc] init];
     cvc.webViewController = wvc;
     
-    self.window.rootViewController = masterNav;
+//    self.window.rootViewController = masterNav;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+        UINavigationController *detailNav = [[UINavigationController alloc] initWithRootViewController:wvc];
+        UISplitViewController *svc = [[UISplitViewController alloc] init];
+        svc.delegate = wvc;
+        svc.viewControllers = @[masterNav, detailNav];
+        self.window.rootViewController = svc;
+    }
+    else
+    {//非 iPad 设备
+        self.window.rootViewController = masterNav;
+    }
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     

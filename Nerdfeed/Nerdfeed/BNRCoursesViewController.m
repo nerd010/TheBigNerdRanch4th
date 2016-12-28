@@ -9,7 +9,7 @@
 #import "BNRCoursesViewController.h"
 #import "BNRWebViewController.h"
 
-@interface BNRCoursesViewController ()
+@interface BNRCoursesViewController () <NSURLSessionDataDelegate>
 
 @property (nonatomic) NSURLSession *session;
 @property (nonatomic, strong) NSArray *courses;
@@ -26,7 +26,7 @@
         self.navigationItem.title = @"BNR Courses";
         
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-        _session = [NSURLSession sessionWithConfiguration:config delegate:nil delegateQueue:nil];
+        _session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:nil];
         
         [self fetchFeed];
     }
@@ -42,7 +42,7 @@
 
 - (void)fetchFeed
 {
-    NSString *requestString = @"http://bookapi.bignerdranch.com/courses.json";
+    NSString *requestString = @"https://bookapi.bignerdranch.com/private/courses.json";
     NSURL *url = [NSURL URLWithString:requestString];
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
     NSURLSessionDataTask *dataTask = [self.session dataTaskWithRequest:req
@@ -84,7 +84,16 @@
     
     self.webViewController.title = course[@"title"];
     self.webViewController.URL = URL;
-    [self.navigationController pushViewController:self.webViewController animated:YES];
+    if (!self.splitViewController)
+    {
+        [self.navigationController pushViewController:self.webViewController animated:YES];
+    }
+}
+
+- (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler
+{
+    NSURLCredential *cred = [NSURLCredential credentialWithUser:@"BigNerdRanch" password:@"AchieveNerdvana" persistence:NSURLCredentialPersistenceForSession];
+    completionHandler(NSURLSessionAuthChallengeUseCredential, cred);
 }
 
 @end
