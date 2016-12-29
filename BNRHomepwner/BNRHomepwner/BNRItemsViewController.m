@@ -13,7 +13,7 @@
 #import "BNRImageStore.h"
 #import "BNRImageViewController.h"
 
-@interface BNRItemsViewController () <UIPopoverControllerDelegate>
+@interface BNRItemsViewController () <UIPopoverControllerDelegate, UIDataSourceModelAssociation>
 
 @property (nonatomic, strong) UIPopoverController *imagePopover;
 
@@ -27,7 +27,7 @@
     if (self)
     {
         UINavigationItem *navItem = self.navigationItem;
-        navItem.title = @"Homepwner";
+        navItem.title = NSLocalizedString(@"Homepwner", @"Name of application");
         
         self.restorationIdentifier = NSStringFromClass([self class]);
         self.restorationClass = [self class];
@@ -38,6 +38,9 @@
         
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
         [nc addObserver:self selector:@selector(updateTableViewForDynamicTypeSize) name:UIContentSizeCategoryDidChangeNotification object:nil];
+        
+        // 注册当前区域设置发生变化的通知
+        [nc addObserver:self selector:@selector(localeChanged:) name:NSCurrentLocaleDidChangeNotification object:nil];
     }
     return self;
 }
@@ -53,6 +56,8 @@
     
     UINib *nib = [UINib nibWithNibName:@"BNRItemCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"bnrItemCell"];
+    
+    self.tableView.restorationIdentifier = @"BNRItemsViewControllerTableView";
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -86,6 +91,11 @@
     [self.tableView reloadData];
 }
 
+- (void)localeChanged:(NSNotification *)note
+{
+    [self.tableView reloadData];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -115,7 +125,13 @@
     cell.thumbnailView.image = item.thumnail;
     cell.nameLabel.text = item.itemName;
     cell.serialNumberLabel.text = item.serialNumber;
-    cell.valueLabel.text = [NSString stringWithFormat:@"$%d", item.valueInDollars];
+
+    static NSNumberFormatter *currencyFormatter = nil;
+    if (!currencyFormatter) {
+        currencyFormatter = [[NSNumberFormatter alloc] init];
+        currencyFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    }
+    cell.valueLabel.text = [currencyFormatter stringFromNumber:@(item.valueInDollars)];
     
     __weak typeof(cell) weakCell = cell;
     cell.actionBlock = ^{
@@ -215,6 +231,50 @@
         return NO;
     }
     return YES;
+}
+
+- (void)encodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    [coder encodeBool:self.isEditing forKey:@"TableViewIsEditing"];
+    [super encodeRestorableStateWithCoder:coder];
+}
+
+- (void)decodeRestorableStateWithCoder:(NSCoder *)coder
+{
+    self.editing = [coder decodeBoolForKey:@"TableViewIsEditing"];
+    [super decodeRestorableStateWithCoder:coder];
+}
+
+- (NSString *)modelIdentifierForElementAtIndexPath:(NSIndexPath *)idx inView:(UIView *)view
+{
+    NSString *identifier = nil;
+    if (idx && view)
+    {
+        BNRItem *item = [[BNRItemStore sharedStore] allItems][idx.row];
+        identifier = item.itemKey;
+    }
+    
+    return identifier;
+}
+
+- (NSIndexPath *)indexPathForElementWithModelIdentifier:(NSString *)identifier inView:(UIView *)view
+{
+    NSIndexPath *indexPath = nil;
+    if (identifier && view)
+    {
+        NSArray *items = [[BNRItemStore sharedStore] allItems];
+        for (BNRItem *item in items)
+        {
+            if ([identifier isEqualToString:item.itemKey])
+            {
+                int row = (int)[items indexOfObjectIdenticalTo:item];
+                indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+                break;
+            }
+        }
+    }
+    
+    return indexPath;
 }
 
 #pragma mark -- HeaderView Method
