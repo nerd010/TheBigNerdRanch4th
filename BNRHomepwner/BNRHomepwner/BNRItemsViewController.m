@@ -29,6 +29,9 @@
         UINavigationItem *navItem = self.navigationItem;
         navItem.title = @"Homepwner";
         
+        self.restorationIdentifier = NSStringFromClass([self class]);
+        self.restorationClass = [self class];
+        
         UIBarButtonItem *bbi = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewItem:)];
         navItem.rightBarButtonItem = bbi;
         navItem.leftBarButtonItem = self.editButtonItem;
@@ -227,6 +230,8 @@
         [self.tableView reloadData];
     };
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
+    navController.restorationIdentifier = NSStringFromClass([navController class]);
+    
     navController.modalPresentationStyle = UIModalPresentationFormSheet; 
     [self presentViewController:navController animated:YES completion:nil];
 }

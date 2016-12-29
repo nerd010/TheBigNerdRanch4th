@@ -22,8 +22,9 @@
     BNRItemsViewController *itemsViewController = [[BNRItemsViewController alloc] init];
     //创建 UINavigationController 对象
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:itemsViewController];
+    navController.restorationIdentifier = NSStringFromClass([navController class]);
     
-//    self.window.rootViewController = itemsViewController;
+    //    self.window.rootViewController = itemsViewController;
     self.window.rootViewController = navController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
@@ -73,5 +74,14 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (BOOL)application:(UIApplication *)application shouldSaveApplicationState:(NSCoder *)coder
+{
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder
+{
+    return YES;
+}
 
 @end
