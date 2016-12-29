@@ -9,7 +9,9 @@
 #import "BNRHypnosisViewController.h"
 #import "BNRHypnosisView.h"
 
-@interface BNRHypnosisViewController ()<UITextFieldDelegate>
+@interface BNRHypnosisViewController () <UITextFieldDelegate>
+
+@property (nonatomic, weak) UITextField *textField;
 
 @end
 
@@ -31,15 +33,26 @@
 {
     BNRHypnosisView *backgroundView = [[BNRHypnosisView alloc] init];
     
-    CGRect textFiledRect = CGRectMake(40, 70, 240, 30);
-    UITextField *textField = [[UITextField alloc] initWithFrame:textFiledRect];
+//    CGRect textFieldRect = CGRectMake(40, 70, 240, 30);
+    CGRect textFieldRect = CGRectMake(40, -20, 240, 30);
+    UITextField *textField = [[UITextField alloc] initWithFrame:textFieldRect];
     textField.borderStyle = UITextBorderStyleRoundedRect;
     textField.placeholder = @"Hypnotize me";
     textField.returnKeyType = UIReturnKeyDone;
     textField.delegate = self;
     [backgroundView addSubview:textField];
-    
+    self.textField = textField;
     self.view = backgroundView;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [UIView animateWithDuration:2.0 delay:0.0 usingSpringWithDamping:0.25 initialSpringVelocity:0.0 options:0 animations:^{
+        CGRect frame = CGRectMake(40, 70, 240, 30);
+        self.textField.frame = frame;
+    } completion:NULL];
 }
 
 - (void)drawHynoticMessage:(NSString *)message
