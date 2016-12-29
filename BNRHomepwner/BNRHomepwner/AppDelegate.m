@@ -16,17 +16,26 @@
 
 @implementation AppDelegate
 
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    return YES;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSLog(@"%@", NSStringFromSelector(_cmd));
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    BNRItemsViewController *itemsViewController = [[BNRItemsViewController alloc] init];
-    //创建 UINavigationController 对象
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:itemsViewController];
-    navController.restorationIdentifier = NSStringFromClass([navController class]);
     
-    //    self.window.rootViewController = itemsViewController;
-    self.window.rootViewController = navController;
-    self.window.backgroundColor = [UIColor whiteColor];
+    //没有触发状态恢复
+    if (!self.window.rootViewController)
+    {
+        BNRItemsViewController *itemsViewController = [[BNRItemsViewController alloc] init];
+        //创建 UINavigationController 对象
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:itemsViewController];
+        navController.restorationIdentifier = NSStringFromClass([navController class]);
+        self.window.rootViewController = navController;
+    }
+
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -68,7 +77,6 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
-
 - (void)applicationWillTerminate:(UIApplication *)application {
     NSLog(@"%@", NSStringFromSelector(_cmd));
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
@@ -82,6 +90,19 @@
 - (BOOL)application:(UIApplication *)application shouldRestoreApplicationState:(NSCoder *)coder
 {
     return YES;
+}
+
+- (UIViewController *)application:(UIApplication *)application viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder
+{
+    //创建新的 UINavigationController 对象
+    UIViewController *vc = [[UINavigationController alloc] init];
+    vc.restorationIdentifier = [identifierComponents lastObject];
+    if ([identifierComponents count] == 1)
+    {
+        self.window.rootViewController = vc;
+    }
+    
+    return vc;
 }
 
 @end

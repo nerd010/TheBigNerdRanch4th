@@ -236,6 +236,11 @@
     [self presentViewController:navController animated:YES completion:nil];
 }
 
++ (UIViewController *)viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder
+{
+    return [[self alloc] init];
+}
+
 - (void)dealloc
 {
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];

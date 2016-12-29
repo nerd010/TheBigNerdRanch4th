@@ -204,6 +204,16 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:self.dismissBlock];
 }
 
++ (UIViewController *)viewControllerWithRestorationIdentifierPath:(NSArray *)identifierComponents coder:(NSCoder *)coder
+{
+    BOOL isNew = NO;
+    if ([identifierComponents count] == 3)
+    {
+        isNew = YES;
+    }
+    return [[self alloc] initForNewItem:isNew];
+}
+
 #pragma mark - UIImagePickerViewController
 - (IBAction)takePicture:(id)sender
 {
