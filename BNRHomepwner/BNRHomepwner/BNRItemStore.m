@@ -9,6 +9,7 @@
 #import "BNRItemStore.h"
 #import "BNRItem.h"
 #import "BNRImageStore.h"
+#import "AppDelegate.h"
 
 @interface BNRItemStore ()
 
@@ -65,6 +66,12 @@
 {
 //    BNRItem *item = [BNRItem randomItem];
     BNRItem *item = [[BNRItem alloc] init];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    item.valueInDollars = [defaults integerForKey:BNRNextItemValuePrefsKey];
+    item.itemName = [defaults objectForKey:BNRNextItemNamePrefsKey];
+    // 查看 NSUserDefaults 中存储了哪些数据
+    NSLog(@"defaults = %@", [defaults dictionaryRepresentation]);
+    
     [self.privateItems addObject:item];
     return item;
 }
